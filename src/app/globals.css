@@ -24,3 +24,37 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Reset react-day-picker default styles */
+.rdp {
+  --rdp-accent-color: #f3b927;
+  --rdp-accent-background-color: #f3b927;
+  --rdp-selected-border: none;
+}
+
+/* All day buttons - consistent rounded square shape */
+.rdp-day_button {
+  border-radius: 0.375rem !important;
+}
+
+/* Selected day - gold fill, white text */
+.rdp-day_button[aria-selected="true"],
+.rdp-day_button[aria-selected="true"]:hover,
+.rdp-day_button[aria-selected="true"]:focus,
+.rdp-selected .rdp-day_button,
+.rdp-day.rdp-selected button,
+.rdp [aria-selected="true"],
+.rdp-day[aria-selected="true"] button {
+  background-color: #f3b927 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0.375rem !important;
+}
+
+/* Today's date when NOT selected - gold border only */
+.rdp-today .rdp-day_button:not([aria-selected="true"]),
+.rdp-day_today:not(.rdp-selected) .rdp-day_button {
+  background-color: transparent !important;
+  border: 2px solid #f3b927 !important;
+  color: #f3b927 !important;
+}
