@@ -1,5 +1,3 @@
-"use client"
-
 import { useMemo, useState } from "react"
 import { addMonths, setMonth as setDateMonth, setYear } from "date-fns"
 import { ChevronLeft, ChevronRight } from "lucide-react"
@@ -12,34 +10,28 @@ const MONTHS = [
   "July", "August", "September", "October", "November", "December"
 ]
 
-interface CalendarProps {
-  date: Date | undefined
-  onDateChange: (date: Date | undefined) => void
-  className?: string
-}
-
-export function Calendar({ date, onDateChange, className }: CalendarProps) {
+export function Calendar({ date, onDateChange, className }) {
   const initialMonth = useMemo(() => date ?? new Date(), [date])
-  const [month, setMonth] = useState<Date>(initialMonth)
+  const [month, setMonth] = useState(initialMonth)
 
-  const handleSelect = (day?: Date) => {
+  const handleSelect = (day) => {
     onDateChange(day)
     if (day) {
       setMonth(day)
     }
   }
 
-  const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleMonthChange = (e) => {
     const newMonth = parseInt(e.target.value, 10)
     setMonth(prev => setDateMonth(prev, newMonth))
   }
 
-  const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleYearChange = (e) => {
     const newYear = parseInt(e.target.value, 10)
     setMonth(prev => setYear(prev, newYear))
   }
 
-  const goToMonth = (direction: "prev" | "next") => {
+  const goToMonth = (direction) => {
     setMonth(prev => addMonths(prev, direction === "next" ? 1 : -1))
   }
 

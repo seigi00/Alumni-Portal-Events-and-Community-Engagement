@@ -8,11 +8,11 @@ import ducks from '@/components/images/ducks.jpeg';
 
 export default function Home() {
     const [form, setForm] = useState({ name: '', phone: '', email: '' });
-    const [formErrors, setFormErrors] = useState<{ name?: string; phone?: string; email?: string }>({});
-    const [formTouched, setFormTouched] = useState<{ name?: boolean; phone?: boolean; email?: boolean }>({});
+    const [formErrors, setFormErrors] = useState({});
+    const [formTouched, setFormTouched] = useState({});
     const [formSuccess, setFormSuccess] = useState(false);
 
-    function validateFormField(field: string, value: string) {
+    function validateFormField(field, value) {
       switch (field) {
         case 'name':
           if (!value.trim()) return 'Name is required.';
@@ -30,7 +30,7 @@ export default function Home() {
       }
     }
 
-    function handleFormChange(e: React.ChangeEvent<HTMLInputElement>) {
+    function handleFormChange(e) {
       const { name, value } = e.target;
       setForm((prev) => ({ ...prev, [name]: value }));
       setFormTouched((prev) => ({ ...prev, [name]: true }));
@@ -38,13 +38,13 @@ export default function Home() {
       setFormSuccess(false);
     }
 
-    function handleFormBlur(e: React.FocusEvent<HTMLInputElement>) {
+    function handleFormBlur(e) {
       const { name, value } = e.target;
       setFormTouched((prev) => ({ ...prev, [name]: true }));
       setFormErrors((prev) => ({ ...prev, [name]: validateFormField(name, value) }));
     }
 
-    function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    function handleFormSubmit(e) {
       e.preventDefault();
       const errors = {
         name: validateFormField('name', form.name),
@@ -59,17 +59,17 @@ export default function Home() {
         setTimeout(() => setFormSuccess(false), 2000);
       }
     }
-  const [selectedDate1, setSelectedDate1] = useState<Date | undefined>(undefined);
-  const [selectedDate2, setSelectedDate2] = useState<Date | undefined>(undefined);
+  const [selectedDate1, setSelectedDate1] = useState(undefined);
+  const [selectedDate2, setSelectedDate2] = useState(undefined);
   const [searchQuery, setSearchQuery] = useState('');
   const [isAttending, setIsAttending] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const allCategories = ['Webinar', 'Tech Talks', 'Alumni Reunion', 'Career Fairs'];
 
-  const toggleCategory = (category: string) => {
+  const toggleCategory = (category) => {
     setSelectedCategories(prev =>
       prev.includes(category)
         ? prev.filter(c => c !== category)

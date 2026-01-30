@@ -2,7 +2,7 @@
 
 import Sidebar from '@/components/Sidebar';
 
-export default function LayoutShell({ children }: { children: React.ReactNode }) {
+export default function LayoutShell({ children }) {
   return (
     <div className="flex min-h-screen bg-[#EFEFEF]">
       <Sidebar />
